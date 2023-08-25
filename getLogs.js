@@ -5,10 +5,16 @@ const getLogs = async (req, res) => {
 
   const user = await UserModel.findById(_id);
 
+  const { from, to, limit } = req.query;
+
   const logs = await ExerciseModel.find()
     .where({ user: _id })
+    .where("date")
+    .gte(from)
+    .lte(to)
     .select("description duration date")
-    .limit(0);
+    .limit(limit);
+
   const resObj = {
     username: user.username,
     count: logs.length,
