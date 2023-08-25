@@ -13,7 +13,6 @@ POST http://localhost:3000/api/users/64e766aec38ad1dec0557733/exercises
 content-type: application/json
 
 {
-  ":_id": "64e766aec38ad1dec0557733",
   "description": "test",
   "duration": 5,
   "date": "2023-08-24"

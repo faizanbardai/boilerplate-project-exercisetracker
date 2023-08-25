@@ -2,7 +2,7 @@ const { UserModel, ExerciseModel } = require("./models/user");
 
 const createNewExercise = async (req, res) => {
   const { description, duration, date } = req.body;
-  const user = await UserModel.findById(req.body[":_id"]).exec();
+  const user = await UserModel.findById(req.params.id);
 
   const exercise = new ExerciseModel({
     user: user._id,
