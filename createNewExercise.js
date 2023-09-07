@@ -17,7 +17,7 @@ const createNewExercise = async (req, res) => {
   res.json({
     _id: req.params.id,
     username: user.username,
-    date: exRes.date,
+    date: new Date(exRes.date).toDateString(),
     duration: exRes.duration,
     description: exRes.description,
   });
