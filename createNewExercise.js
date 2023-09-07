@@ -15,7 +15,7 @@ const createNewExercise = async (req, res) => {
   const user = await UserModel.findById(req.params.id);
 
   res.json({
-    id: req.params.id,
+    _id: req.params.id,
     username: user.username,
     date: exRes.date,
     duration: exRes.duration,
