@@ -7,19 +7,21 @@ const getLogs = async (req, res) => {
 
   const { from, to, limit } = req.query;
 
-  const logs = await ExerciseModel.find()
-    .where({ user: _id })
-    .where("date")
-    .gte(from)
-    .lte(to)
-    .select("description duration date")
-    .limit(limit);
+  const logs = ExerciseModel.find().where({ user: _id });
+
+  if (to && from) logs.where("date").gte(from).lte(to);
+
+  logs.select("description duration date");
+
+  if (limit) logs.limit(limit);
+
+  logsData = await logs.exec();
 
   const resObj = {
     username: user.username,
-    count: logs.length,
+    count: logsData.length,
     _id,
-    log: logs.map((log) => ({
+    log: logsData.map((log) => ({
       description: log.description,
       duration: log.duration,
       date: new Date(log.date).toDateString(),
